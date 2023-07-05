@@ -1,0 +1,16 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+}
+.App {
+  /*background: linear-gradient(
+      0deg,
+      rgba(42, 145, 8, 0.2),
+      rgba(42, 145, 8, 0.2)
+    ),s
+    #1fe437; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+  text-align: center;
+}
