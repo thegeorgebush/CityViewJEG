@@ -13,7 +13,7 @@ const EventCard = ({ eventPost, setCurrentEventId }) => {
         component={Link}
         type={"button"}
         //to="/RestaurantPage"
-        style={{ padding: "0px" }}
+        style={{ padding: "0px", textTransform: "none" }}
         fullWidth
       >
         <Card style={{ width: "100%" }}  >
@@ -37,10 +37,14 @@ const EventCard = ({ eventPost, setCurrentEventId }) => {
             {eventPost.eventDescription}
           </Typography>
 
-          {user?.result?.googleId === eventPost?.creator ||
+         {/** <Button onClick={() => setCurrentEventId(eventPost._id)}>Edit</Button> */}
+          {/** <Button onClick={() => dispatch(deleteEventPost(eventPost._id))}> 
+                Delete
+              </Button>*/}
+          {/*user?.result?.googleId === eventPost?.creator ||
             (user?.result?._id === eventPost?.creator && (
-              <Button onClick={() => setCurrentEventId(eventPost._id)}>Edit</Button>
-            ))}
+              
+            ))*/}
           {user?.result?.googleId === eventPost?.creator ||
             (user?.result?._id === eventPost?.creator && (
               <Button onClick={() => dispatch(deleteEventPost(eventPost._id))}>

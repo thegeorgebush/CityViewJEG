@@ -23,7 +23,7 @@ const EventCards = ({ setCurrentEventId }) => {
       }}>
         {eventPosts.map((eventPost) => (
           <Box key={eventPost._id} sx={{ flexShrink: 0, minWidth: 300, maxWidth: 300, margin: 1 }}>
-            <EventCard eventPost={eventPost} setCurrentId={setCurrentEventId} />
+            <EventCard eventPost={eventPost} setCurrentEventId={setCurrentEventId} />
           </Box>
         ))}
         <Button

@@ -20,12 +20,15 @@ const EventForm = ({ currentEventId, setCurrentEventId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const post = useSelector((state) =>
-    currentEventId ? state.posts.find((p) => p._id === currentEventId) : null
+    currentEventId ? state.eventPosts.find((p) => p._id === currentEventId) : null
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (post) setPostData(post);
+    if (post) {
+      setPostData(post);
+      console.log(currentEventId);
+    }
   }, [post]);
 
   const handleSubmit = (e) => {
@@ -58,9 +61,10 @@ const EventForm = ({ currentEventId, setCurrentEventId }) => {
   const clear = () => {
     setCurrentEventId(null);
     setPostData({
-      title: "",
-      message: "",
-      image: ""
+      eventName: "",
+      eventDate: "",
+      eventDescription: "",
+      eventImage: ""
     });
   };
 
@@ -81,9 +85,19 @@ const EventForm = ({ currentEventId, setCurrentEventId }) => {
                 variant="outlined"
                 label="Event Name"
                 fullWidth
-                value={postData.title}
+                value={postData.eventName}
                 onChange={(e) =>
-                  setPostData({ ...postData, title: e.target.value })
+                  setPostData({ ...postData, eventName: e.target.value })
+                }
+              />
+              <TextField
+                name="EventDate"
+                variant="outlined"
+                label="Event Date"
+                fullWidth
+                value={postData.eventDate}
+                onChange={(e) =>
+                  setPostData({ ...postData, eventDate: e.target.value })
                 }
               />
               <TextField
@@ -91,9 +105,9 @@ const EventForm = ({ currentEventId, setCurrentEventId }) => {
                 variant="outlined"
                 label="Event Description"
                 fullWidth
-                value={postData.message}
+                value={postData.eventDescription}
                 onChange={(e) =>
-                  setPostData({ ...postData, message: e.target.value })
+                  setPostData({ ...postData, eventDescription: e.target.value })
                 }
               />
               <TextField
@@ -101,9 +115,9 @@ const EventForm = ({ currentEventId, setCurrentEventId }) => {
                 variant="outlined"
                 label="Event Image"
                 fullWidth
-                value={postData.image}
+                value={postData.eventImage}
                 onChange={(e) =>
-                  setPostData({ ...postData, image: e.target.value })
+                  setPostData({ ...postData, eventImage: e.target.value })
                 }
               />
 

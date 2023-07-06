@@ -2,6 +2,7 @@
   "name": "cityview-dashboard",
   "version": "1.0.0",
   "proxy": "http://localhost:3000",
+
   "description": "",
   "keywords": [],
   "main": "src/index.js",
@@ -29,9 +30,12 @@
     "three": "0.144.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.13.8"
+    "@babel/runtime": "7.13.8",
+    "gh-pages": "^5.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
