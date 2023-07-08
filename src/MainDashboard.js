@@ -1,5 +1,5 @@
 import "./styles.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Card,
@@ -22,15 +22,20 @@ import RestaurantCards from "./components/restaurantComponents/restaurantCards/R
 import EventForm from "./components/eventsComponents/EventForm/EventForm";
 import EventCards from "./components/eventsComponents/EventCards/EventCards";
 import GroceryAndGoodsCards from "./components/GroceryAndGoodsComponent/GroceryAndGoodsCards/GroceryAndGoodsCards";
+import StartupScreen from "./components/StartupScreen/StartupScreen";
 
 const MainDashboard = ({
   currentId,
   setCurrentId,
   currentEventId,
-  setCurrentEventId
+  setCurrentEventId,
+  animationComplete,
+  setAnimationComplete
 }) => {
+  
   return (
     <div className="App">
+      {animationComplete ? (
       <Grid
         container
         spacing={3}
@@ -162,7 +167,7 @@ const MainDashboard = ({
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid>) : <StartupScreen setAnimationComplete={setAnimationComplete} />}
     </div>
   );
 };

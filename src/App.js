@@ -22,6 +22,7 @@ import Auth from "./components/Auth/Auth";
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
   const [currentEventId, setCurrentEventId] = useState(0);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <AppBar />
+      {animationComplete && <AppBar />}
         <Routes>
 
           <Route exact path="/auth" element={<Auth />} />
@@ -46,6 +47,8 @@ const App = () => {
                 setCurrentId={setCurrentId}
                 currentEventId={currentEventId}
                 setCurrentEventId={setCurrentEventId}
+                setAnimationComplete={setAnimationComplete}
+                animationComplete={animationComplete}
               />
             }
           />
