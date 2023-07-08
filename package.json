@@ -2,7 +2,6 @@
   "name": "cityview-dashboard",
   "version": "1.0.0",
   "proxy": "http://localhost:3000",
-
   "description": "",
   "keywords": [],
   "main": "src/index.js",

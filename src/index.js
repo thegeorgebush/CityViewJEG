@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
+//import 'mapbox-gl/dist/mapbox-gl.css';
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 

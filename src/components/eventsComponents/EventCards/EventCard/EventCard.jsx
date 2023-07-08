@@ -1,4 +1,4 @@
-import { Card, Typography, Button, CardMedia } from "@mui/material";
+import { Card, Typography, Button, CardMedia, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -23,34 +23,33 @@ const EventCard = ({ eventPost, setCurrentEventId }) => {
             image={eventPost.eventImage}
             alt={"test"}
           />
+          <CardContent style={{ padding: "10px" }}>
+            <Typography
+              align={"left"}
+              style={{ fontWeight: "bold", padding: "10px 10px 0px 0px" }}
+            >
+              {eventPost.eventName}
+            </Typography>
+            <Typography align={"left"} style={{ color: "grey" }}>
+              {eventPost.eventDate}
+            </Typography>
+            <Typography align={"left"} style={{ color: "grey" }}>
+              {eventPost.eventDescription}
+            </Typography>
 
-          <Typography
-            align={"left"}
-            style={{ fontWeight: "bold", padding: "10px 10px 0px 0px" }}
-          >
-            {eventPost.eventName}
-          </Typography>
-          <Typography align={"left"} style={{ color: "grey" }}>
-            {eventPost.eventDate}
-          </Typography>
-          <Typography align={"left"} style={{ color: "grey" }}>
-            {eventPost.eventDescription}
-          </Typography>
-
-         {/** <Button onClick={() => setCurrentEventId(eventPost._id)}>Edit</Button> */}
-          {/** <Button onClick={() => dispatch(deleteEventPost(eventPost._id))}> 
-                Delete
-              </Button>*/}
-          {/*user?.result?.googleId === eventPost?.creator ||
+            {<Button onClick={() => setCurrentEventId(eventPost._id)}>Edit</Button>}
+            {<Button onClick={() => dispatch(deleteEventPost(eventPost._id))}>Delete</Button>}
+            {/*user?.result?.googleId === eventPost?.creator ||
             (user?.result?._id === eventPost?.creator && (
               
             ))*/}
-          {user?.result?.googleId === eventPost?.creator ||
-            (user?.result?._id === eventPost?.creator && (
-              <Button onClick={() => dispatch(deleteEventPost(eventPost._id))}>
-                Delete
-              </Button>
-            ))}
+            {user?.result?.googleId === eventPost?.creator ||
+              (user?.result?._id === eventPost?.creator && (
+                <Button onClick={() => dispatch(deleteEventPost(eventPost._id))}>
+                  Delete
+                </Button>
+              ))}
+          </CardContent>
         </Card>
       </Button>
     </>

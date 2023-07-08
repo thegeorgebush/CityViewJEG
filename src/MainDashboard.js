@@ -10,6 +10,9 @@ import {
   Divider,
   Paper
 } from "@mui/material";
+import mapboxgl from '!mapbox-gl';
+
+import Map from "./components/mapComponent/Map"
 //import RestaurantCard from "./components/restaurantPage/RestaurantCard";
 import { Link } from "react-router-dom";
 //import Map from "./MapComponent";
@@ -18,6 +21,7 @@ import RestaurantCards from "./components/restaurantComponents/restaurantCards/R
 //import Pagination from "./components/Pagination";
 import EventForm from "./components/eventsComponents/EventForm/EventForm";
 import EventCards from "./components/eventsComponents/EventCards/EventCards";
+import GroceryAndGoodsCards from "./components/GroceryAndGoodsComponent/GroceryAndGoodsCards/GroceryAndGoodsCards";
 
 const MainDashboard = ({
   currentId,
@@ -62,10 +66,10 @@ const MainDashboard = ({
                 distance.
               </Typography>
             </Grid>
-            <Grid item xs={12} lg={6}>
-              
+            <Grid item xs={12} lg={5}>
+              <Map />
             </Grid>
-            <Grid item style={{ marginBottom: "30%" }} />
+            <Grid item lg={1} style={{ marginBottom: "30%" }} />
           </Grid>
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
@@ -101,7 +105,7 @@ const MainDashboard = ({
               >
                 Restaurants
               </Typography>
-              
+
               <Divider style={{ margin: "1% 0% 0% 0%" }} />
             </Grid>
             <Grid item xs={12} lg={10}>
@@ -113,9 +117,12 @@ const MainDashboard = ({
                 align={"left"}
                 style={{ fontWeight: 600 }}
               >
-                Convenience
+                Grocery And Goods
               </Typography>
               <Divider style={{ margin: "1% 0% 0% 0%" }} />
+            </Grid>
+            <Grid item xs={12} lg={10}>
+              <GroceryAndGoodsCards />
             </Grid>
             <Grid item xs={11} md={11} lg={10}>
               <Typography
@@ -123,7 +130,7 @@ const MainDashboard = ({
                 align={"left"}
                 style={{ fontWeight: 600 }}
               >
-                News
+                What's Happening in the Hood
               </Typography>
               <Divider style={{ margin: "1% 0% 0% 0%" }} />
             </Grid>
@@ -149,7 +156,7 @@ const MainDashboard = ({
                 align={"left"}
                 style={{ fontWeight: 600 }}
               >
-                Games
+                Neighborhood Games
               </Typography>
               <Divider style={{ margin: "1% 0% 0% 0%" }} />
             </Grid>

@@ -25,7 +25,7 @@ const restaurantMenuCard = ({ menuItem, setPostData, postData, menuIndex, itemIn
                                 name="ItemName"
                                 variant="outlined"
                                 label="Item Name"
-                                value={menuItem.description}
+                                value={menuItem.name}
                                 onChange={(e) => {
                                     let newMenu = [...postData.menu]; // create a copy of the menu array
                                     newMenu[menuIndex].category.menuItems[itemIndex].name = e.target.value; // update the item name of the specific object

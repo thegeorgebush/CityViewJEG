@@ -12,8 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../../actions/posts";
 import RestaurantMenuCards from "./restaurantMenuCards/restaurantMenuCards";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useLocation } from "react-router-dom";
 
 const RestaurantForm = ({ currentId, setCurrentId }) => {
+  //const location = useLocation(); 
+  //const currentId = location.state?.currentId;
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -35,13 +38,16 @@ const RestaurantForm = ({ currentId, setCurrentId }) => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
+  const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (post) setPostData(post);
+    console.log(currentId)
+    console.log(post);
+    if (post) {
+      console.log("in here");
+      setPostData(post)};
   }, [post]);
 
   const handleSubmit = (e) => {

@@ -34,9 +34,16 @@ const RestaurantCard = ({ post, setCurrentId }) => {
       <Typography align={"left"} style={{ color: "grey" }}>
         {post.message} minute walk
       </Typography>
+      <Button component={Link}
+        type={"button"}
+        to={{pathname: `/restaurantForm`, state: { currentId: post._id }}}
+        onClick={() => {
+          console.log("in card" + post._id);
+          setCurrentId(post._id)}}>Edit</Button>
+          <Button onClick={() => dispatch(deletePost(post._id))}>Delete</Button>
       {user?.result?.googleId === post?.creator ||
         (user?.result?._id === post?.creator && (
-          <Button onClick={() => setCurrentId(post._id)}>Edit</Button>
+          <Button onClick={() => {setCurrentId(post._id)}}>Edit</Button>
         ))}
       {user?.result?.googleId === post?.creator ||
         (user?.result?._id === post?.creator && (

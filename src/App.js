@@ -49,7 +49,7 @@ const App = () => {
               />
             }
           />
-          <Route exact path="/restaurantForm" element={<RestaurantForm />} />
+          <Route exact path="/restaurantForm" element={<RestaurantForm currentId={currentId} setCurrentId={setCurrentId} />} />
           <Route exact path="/restaurant/:id" element={<RestaurantDetails />} />
         </Routes>
       </Router>

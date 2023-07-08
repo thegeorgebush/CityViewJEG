@@ -14,3 +14,8 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
   text-align: center;
 }
+
+.map-container {
+  height: 300px;
+}
+

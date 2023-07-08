@@ -73,7 +73,7 @@ const Auth = () => {
   };
 */
   return (
-    <Container component="main" maxWidth="xs">
+    <Container style={{textAlign: "center", alignItems: "center"}} component="main" maxWidth="xs">
       <Paper elevation={3}>
         <Avatar>
           <LockIcon />
