@@ -6,17 +6,23 @@ import {
   Divider,
   TextField,
   Paper,
-  IconButton
+  IconButton,
+  Box,
+  Card,
+  CardMedia
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../../actions/posts";
 import RestaurantMenuCards from "./restaurantMenuCards/restaurantMenuCards";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation } from "react-router-dom";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 
 const RestaurantForm = ({ currentId, setCurrentId }) => {
   //const location = useLocation(); 
   //const currentId = location.state?.currentId;
+  const [editIndex, setEditIndex] = useState(0);
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -38,7 +44,7 @@ const RestaurantForm = ({ currentId, setCurrentId }) => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null );
+  const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
 
   const dispatch = useDispatch();
 
@@ -47,7 +53,8 @@ const RestaurantForm = ({ currentId, setCurrentId }) => {
     console.log(post);
     if (post) {
       console.log("in here");
-      setPostData(post)};
+      setPostData(post)
+    };
   }, [post]);
 
   const handleSubmit = (e) => {
@@ -108,65 +115,122 @@ const RestaurantForm = ({ currentId, setCurrentId }) => {
             "linear-gradient(0deg, rgba(42, 145, 8, 0.2), rgba(42, 145, 8, 0.2)),#1fe437"
         }}
       >
+        {postData.image != "" ? (
+          <Grid item style={{ width: "100%" }}>
+            <Card>
+              <CardMedia
+                component="img"
+                height="350"
+                image={postData.image}
+                alt="burgers"
+              />
+            </Card>
+          </Grid>
+        ) : null}
         <Grid
           item
           container
+          lg={3}
+          justifyContent={"center"}
+          spacing={2}
+          style={{
+            position: "sticky",
+            background: "white",
+            marginTop: `${postData.image === "" ? "20%" : "0"}`
+          }}
+        >
+          <Grid container style={{ alignSelf: "flex-start", position: "sticky", top: "90px" }}>
+            {postData.menu.map((post) => (
+              <Grid item lg={12}>
+                <Button fullWidth>{post.category.catName}</Button>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          lg={9}
           //justifyContent={"center"}
           spacing={2}
           style={{
             position: "sticky",
             background: "white",
-            marginTop: "20%"
+            marginTop: `${postData.image === "" ? "20%" : "0"}`
           }}
         >
           <Grid item xs={12} lg={1} />
-          <Grid item xs={11} md={11} lg={11}>
-            <TextField
-              name="RestaurantName"
-              variant="outlined"
-              label="Restaurant Name"
+          {editIndex === 1 ? (
+            <Grid item xs={12} md={12} lg={12}>
+              <TextField
+                name="RestaurantName"
+                variant="outlined"
+                label="Restaurant Name"
 
-              value={postData.title}
-              onChange={(e) =>
-                setPostData({ ...postData, title: e.target.value })
-              }
-            />
-          </Grid>
-          <Grid item xs={12} lg={1} />
-          <Grid item xs={11} md={11} lg={11}>
-            <TextField
-              name="RestaurantDescription"
-              variant="outlined"
-              label="Restaurant Description"
+                value={postData.title}
+                onChange={(e) =>
+                  setPostData({ ...postData, title: e.target.value })
+                }
+              />
+              <IconButton onClick={() => setEditIndex(0)}><CheckIcon /></IconButton>
+            </Grid>
+          ) :
+            <Grid item xs={12} md={12} lg={12}>
+              <Box display="flex" alignItems="center">
+                <Typography variant="h4" fontWeight={"bold"}>{postData.title}</Typography>
+                <IconButton onClick={() => setEditIndex(1)}><EditIcon /></IconButton>
+              </Box>
+            </Grid>}
+          {editIndex === 2 ? (
+            <Grid item xs={12} md={12} lg={12}>
+              <TextField
+                name="RestaurantDescription"
+                variant="outlined"
+                label="Restaurant Description"
 
-              value={postData.message}
-              onChange={(e) =>
-                setPostData({ ...postData, message: e.target.value })
-              }
-            />
-          </Grid>
-          <Grid item xs={12} lg={1} />
-          <Grid item xs={11}>
-            <TextField
-              name="RestaurantImage"
-              variant="outlined"
-              label="Restaurant Image"
-              value={postData.image}
-              onChange={(e) =>
-                setPostData({ ...postData, image: e.target.value })
-              }
-            />
-          </Grid>
-          <Grid item xs={12} lg={1} />
-          <Grid item xs={11} md={11} lg={10}>
+                value={postData.message}
+                onChange={(e) =>
+                  setPostData({ ...postData, message: e.target.value })
+                }
+              />
+              <IconButton onClick={() => setEditIndex(0)}><CheckIcon /></IconButton>
+            </Grid>
+          ) :
+            <Grid item xs={12} md={12} lg={12}>
+              <Box display="flex" alignItems="center">
+                <Typography color={"grey"}>{postData.message}</Typography>
+                <IconButton onClick={() => setEditIndex(2)}><EditIcon /></IconButton>
+              </Box>
+            </Grid>}
+          {editIndex === 3 ? (
+            <Grid item xs={12}>
+              <TextField
+                name="RestaurantImage"
+                variant="outlined"
+                label="Restaurant Image"
+                value={postData.image}
+                onChange={(e) =>
+                  setPostData({ ...postData, image: e.target.value })
+                }
+              />
+              <IconButton onClick={() => setEditIndex(0)}><CheckIcon /></IconButton>
+            </Grid>
+          ) :
+            <Grid item xs={12} md={12} lg={12}>
+              <Box display="flex" alignItems="center">
+                <Typography>Edit Image</Typography>
+                <IconButton onClick={() => setEditIndex(3)}><EditIcon /></IconButton>
+              </Box>
+            </Grid>}
+          <Grid item xs={11} md={11} lg={11}>
             <Typography variant={"h6"} align={"left"} style={{ fontWeight: 600 }}>
               {currentId ? "Edit" : "Create"} Restaurant
             </Typography>
             <Divider style={{ margin: "1% 0% 0% 0%" }} />
           </Grid>
-          <Grid item container justifyContent={"center"} xs={12} spacing={2}>
+          <Grid item container xs={12} spacing={2}>
             {postData.menu.map((post, index) => (
-              <Grid item key={index} xs={10}>
+              <Grid item key={index} xs={11}>
                 <TextField
                   name="CategoryName"
                   variant="outlined"

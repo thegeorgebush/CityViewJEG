@@ -34,7 +34,7 @@ const App = () => {
   return (
     <>
       <Router>
-      {animationComplete && <AppBar />}
+      {<AppBar />}
         <Routes>
 
           <Route exact path="/auth" element={<Auth />} />
