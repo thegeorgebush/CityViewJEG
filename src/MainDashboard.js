@@ -36,7 +36,7 @@ const MainDashboard = ({
 
   return (
     <div className="App">
-      {animationComplete === false ? (
+      {animationComplete === true ? (
         <Grid
           container
           spacing={3}
@@ -129,6 +129,16 @@ const MainDashboard = ({
               </Grid>
               <Grid item xs={12} lg={10}>
                 <RestaurantCards setCurrentId={setCurrentId} />
+              </Grid>
+              <Grid item xs={11} md={11} lg={10}>
+                <Typography
+                  variant={"h5"}
+                  align={"left"}
+                  style={{ fontWeight: 600 }}
+                >
+                  Shopping
+                </Typography>
+                <Divider style={{ margin: "1% 0% 0% 0%" }} />
               </Grid>
               <Grid item xs={11} md={11} lg={10}>
                 <Typography

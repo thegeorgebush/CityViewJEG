@@ -51,10 +51,8 @@ const RestaurantForm = ({ currentId, setCurrentId }) => {
   useEffect(() => {
     console.log(currentId)
     console.log(post);
-    if (post) {
-      console.log("in here");
-      setPostData(post)
-    };
+    if (post) 
+      setPostData(post);
   }, [post]);
 
   const handleSubmit = (e) => {
